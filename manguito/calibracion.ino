@@ -1,5 +1,5 @@
-#define PINBUZZER  10
-#define PINBOTON  2
+#define PINBUZZER  4
+#define PINBOTON  12
 
 
 int v_s_min[6] = {1023, 1023, 1023, 1023, 1023, 1023};

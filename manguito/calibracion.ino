@@ -1,5 +1,5 @@
-#define PINBUZZER  10
-#define PINBOTON  2
+#define PINBUZZER  4
+#define PINBOTON  12
 
 
 int v_s_min[8] = {1023, 1023, 1023, 1023, 1023, 1023, 1023, 1023};
@@ -13,18 +13,18 @@ void setup()
     {
         Serial.begin(115200);
         Serial.println("hola");
+        digitalWrite(13, HIGH);
         Peripherals_init();
         WaitBoton();
         delay(1000);
         calibracion();
-        digitalWrite(13, LOW);
         tone(PINBUZZER, 1500, 50);
         delay(70);
         tone(PINBUZZER, 1500, 50);
         delay(70);
         WaitBoton();
         delay(1000);
-        digitalWrite(13, HIGH);
+
     }
 
 void loop() 
@@ -41,7 +41,7 @@ void calibracion()
 
         int v_s[8];
 
-        for (int j = 0; j < 100; j++) 
+        for (int j = 0; j < 500; j++) 
         {
             delay(10);
             v_s[0] = analogRead(A7);
@@ -187,6 +187,7 @@ void Peripherals_init()
     {
     pinMode(PINBOTON, INPUT);
     pinMode(PINBUZZER, OUTPUT);
+    pinMode(13,OUTPUT);
     }
 
 
@@ -202,5 +203,3 @@ void beep()
     tone(PINBUZZER, 2000, 100);
     delay(200);
     }
-
-

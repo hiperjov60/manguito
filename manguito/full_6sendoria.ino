@@ -17,6 +17,8 @@ int pot_limite = 250;
 volatile int s_p[6];
 bool online;
 int l_pos;
+int v_s_min[6] = {1023, 1023, 1023, 1023, 1023, 1023};
+int v_s_max[6] = {0, 0, 0, 0, 0, 0};
 
 void setup() {
   Serial.begin(115200);
@@ -55,9 +57,7 @@ int PIDLambo(int pos, float Kp, float Kd, float Ki) {
 }
 
 void calibracion() {
-  int v_s_min[6] = {1023, 1023, 1023, 1023, 1023, 1023};
-  int v_s_max[6] = {0, 0, 0, 0, 0, 0};
-
+  
   for (int j = 0; j < 100; j++) {
     delay(10);
     int v_s[6];

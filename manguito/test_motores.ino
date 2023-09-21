@@ -1,27 +1,20 @@
 #define PINBUZZER  4
 #define PINBOTON  12
-
 # define AIN1 7    // pin 1 de dirección del Motor Izquierdo
 # define AIN2 5    // pin 2 de dirección del Motor Izquierdo
 # define PWMA 6    // pin PWM del Motor Izquierdo
-
-
 # define BIN1 9    // pin 1 de dirección del Motor Derecho
 # define BIN2 8    // pin 2 de dirección del Motor Derecho
 # define PWMB 10    // pin PWM del Motor Derecho
+
 int base = 0;
 float Kprop = 1.2;
 float Kderiv = 7.5;
 float Kinte = 0.0;
 int pos;
-
-
-
 int setpoint = 0;
 int last_error = 0;
 int pot_limite = 250;
-
-
 int v_s_min[8] = {1023, 1023, 1023, 1023, 1023, 1023, 1023, 1023};
 int v_s_max[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 volatile int s_p[8];

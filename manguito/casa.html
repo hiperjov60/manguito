@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación de Control PDI</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <label for="input">Valor de Entrada:</label>
+        <input type="range" id="input" min="0" max="100" value="50" step="1">
+        <br>
+        <canvas id="proportionalChart" width="300" height="150"></canvas>
+        <canvas id="derivativeChart" width="300" height="150"></canvas>
+        <canvas id="integralChart" width="300" height="150"></canvas>
+    </div>
+
+    <script>
+        const input = document.getElementById('input');
+        const proportionalChart = document.getElementById('proportionalChart').getContext('2d');
+        const derivativeChart = document.getElementById('derivativeChart').getContext('2d');
+        const integralChart = document.getElementById('integralChart').getContext('2d');
+
+        input.addEventListener('input', updateCharts);
+
+        function updateCharts() {
+            const inputValue = parseFloat(input.value);
+            const proportionalValue = inputValue * 0.5; // Valor proporcional (P)
+            const derivativeValue = (inputValue - parseFloat(input.value)) * 0.5; // Valor derivativo (D)
+            const integralValue = (inputValue + parseFloat(input.value)) * 0.5; // Valor integral (I)
+
+            // Dibujar gráficos
+            drawChart(proportionalChart, 'Proporcional', proportionalValue);
+            drawChart(derivativeChart, 'Derivativo', derivativeValue);
+            drawChart(integralChart, 'Integral', integralValue);
+        }
+
+        function drawChart(ctx, label, value) {
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            ctx.font = '16px Arial';
+            ctx.fillText(label + ': ' + value.toFixed(2), 10, 20);
+            ctx.fillStyle = 'lightblue';
+            ctx.fillRect(0, 30, value, 50);
+            ctx.strokeStyle = 'blue';
+            ctx.strokeRect(0, 30, ctx.canvas.width, 50);
+        }
+    </script>
+</body>
+
+</html>

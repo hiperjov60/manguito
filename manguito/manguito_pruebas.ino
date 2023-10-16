@@ -12,8 +12,8 @@
 int pruebas;
 
 int base = 250;    // Velocidad base de los motores
-float Kprop = 4.4; // fuerza oscilaciones
-float Kderiv = 8.5;  //rapidez de deteccion de error
+float Kprop = 1.6; // fuerza oscilaciones
+float Kderiv = 6.6;  //rapidez de deteccion de error
 float Kinte = 0;  // acumulacion del error
 int pos;
 
@@ -63,7 +63,7 @@ void loop(){
     Serial.print("\t");
     Serial.println(Correction_power);
   }
-  aumento();
+ // aumento(); 
 }
 void aumento(){
    analogWrite(PWMA, 0);
@@ -71,9 +71,9 @@ void aumento(){
    Serial.print("se incrementó kprop");
    Serial.println(Kprop);
    delay (2000);
-   //Kprop = Kprop + 0.1; // fuerza oscilaciones
-  // Kderiv += 0.1;  //rapidez de deteccion de error 
-   Kinte += 0.1 ;  // acumulacion del error
+   Kprop = Kprop + 0.5; // fuerza oscilaciones
+  // Kderiv += 0.5;  //rapidez de deteccion de error 
+  // Kinte = 0 ;  // acumulacion del error
    pruebas = 0;
 }
 
